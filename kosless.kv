@@ -1,0 +1,261 @@
+WindowManager:
+    Main:
+    Show:
+    Add:
+    Delete:
+
+<Main>:
+    name: "Main"
+    FloatLayout:
+
+        canvas:
+
+            Color:
+                rgba: .62,.91,.968,1
+            Rectangle:
+                pos : self.pos
+                size : self.size
+
+            Color:
+                rgba:1,.984,.58,1
+            Rectangle:
+                size: self.width , self.height/25
+                pos: self.pos
+
+
+
+
+        Label:
+            text:"Kosless"
+            font_size:30
+            color: 1,.984,.58
+            pos_hint:{"y":0.4}
+            bold:True
+        Button:
+            text:"Add Data"
+            pos_hint:{"y":0.55,"x":0.25}
+            size_hint: 0.5 ,0.1
+            background_color:0.1, 0.5, 0.6, 1
+            on_press :
+                root.btn_add_data()
+                app.root.current= "Add"
+                root.manager.transition.direction= "left"
+        Button:
+            text:"Edit Data"
+            size_hint: 0.5 ,0.1
+            pos_hint:{"y":0.40,"x":0.25}
+            background_color:0.1, 0.5, 0.6, 1
+            on_press :
+                root.btn_edit_data()
+                app.root.current= "Delete"
+                root.manager.transition.direction= "left"
+
+        Button:
+            text:"See Data"
+            size_hint: 0.5 ,0.1
+            pos_hint:{"y":0.25,"x":0.25}
+            background_color:0.1, 0.5, 0.6, 1
+            on_press :
+                root.btn_see_data()
+                app.root.current= "Show"
+                root.manager.transition.direction= "left"
+
+<Show>:
+    name: "Show"
+
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 0.62, 0.91, 0.968, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+            Color:
+                rgba: .83, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.height/1.2,self.width/1.2
+
+    ScrollView:
+        GridLayout:
+            id: grid
+            padding: 5
+            spacing: 5
+            size_hint: None, None
+            size: self.minimum_size
+
+    FloatLayout:
+        Button:
+            text:"Back"
+            size_hint: 0.25,0.1
+            pos_hint:{"top":0.5,"x":0.7}
+            background_color:0.1, 0.5, 0.6, 1
+            on_press:
+                app.root.current= "Main"
+                root.manager.transition.direction= "right"
+
+
+<Add>:
+    nama_lengkap : namalengkap
+    nomor_kamar : nomorkamar
+    biaya_kos : biayakos
+    tanggal_masuk : tanggalmasuk
+    tanggal_bayar : tanggalbayar
+    name: "Add"
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: .62,.91,.968,1
+            Rectangle:
+                pos : self.pos
+                size : self.size
+
+    FloatLayout:
+
+        Label:
+            text: "Nama Lengkap:"
+            size_hint: 0.1,0.1
+            pos_hint:{"x":0.1,"y":0.65}
+            font_size:20
+        TextInput:
+            multiline:False
+            id : namalengkap
+            size_hint: 0.4,0.05
+            pos_hint:{"x":0.35,"y":0.675}
+        Label:
+            text: "Nomor Kamar:"
+            size_hint: 0.1,0.1
+            pos_hint:{"x":0.0925,"y":0.55}
+            font_size:20
+        TextInput:
+            multiline:False
+            id : nomorkamar
+            size_hint: 0.08,0.05
+            pos_hint:{"x":0.35,"y":0.575}
+        Label:
+            text: "Biaya Kos"
+            size_hint: 0.1,0.1
+            pos_hint:{"x":0.07,"y":0.45}
+            font_size:20
+        Label:
+            text: "Rp."
+            size_hint: 0.1,0.1
+            pos_hint:{"x":0.275,"y":0.45}
+            font_size:20
+            color: .21,1,.31,1
+            bold: True
+        TextInput:
+            multiline:False
+            id : biayakos
+            size_hint: 0.35,0.05
+            pos_hint:{"x":0.35,"y":0.475}
+        Label:
+            text: "Tanggal Masuk:"
+            size_hint: 0.1,0.1
+            pos_hint:{"x":0.1,"y":0.35}
+            font_size:20
+        TextInput:
+            multiline:False
+            id : tanggalmasuk
+            size_hint: 0.35,0.05
+            pos_hint:{"x":0.35,"y":0.375}
+        Label:
+            text: "Tanggal Bayar:"
+            size_hint: 0.1,0.1
+            pos_hint:{"x":0.093,"y":0.25}
+            font_size:20
+        TextInput:
+            multiline:False
+            id : tanggalbayar
+            size_hint: 0.08,0.05
+            pos_hint:{"x":0.35,"y":0.275}
+
+        Button:
+            text:"Back"
+            size_hint: 0.25,0.05
+            pos_hint:{"x":0.15}
+            background_color:0.1, 0.5, 0.6, 1
+            on_press:
+                app.root.current= "Main"
+                root.manager.transition.direction= "right"
+
+
+        Button:
+            text:"Submit"
+            size_hint: 0.25,0.05
+            pos_hint:{"x":0.55}
+            background_color:0.1, 0.5, 0.6, 1
+            on_press:
+                root.submit()
+
+<Delete>:
+    hapus_nama : hapusnama
+    name:"Delete"
+
+    canvas:
+        Color:
+            rgba: 0.62, 0.91, 0.968, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Color:
+            rgba: .83, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.height/1.2,self.width/1.2
+
+    ScrollView:
+        GridLayout:
+            id: grid
+            padding: 5
+            spacing: 5
+            size_hint: None, None
+            size: self.minimum_size
+
+    FloatLayout:
+        Button:
+            text:"Delete"
+            size_hint: 0.15,0.075
+            pos_hint:{"x":0.73,"y":0.35}
+            background_color:2, 0.73, 0.64, 1
+            on_press:
+                root.btn()
+
+        Button:
+            text:"Back"
+            size_hint: 0.25,0.05
+            pos_hint:{"x":0.678,"y":0.275}
+            background_color:0.1, 0.5, 0.6, 1
+            on_press:
+                app.root.current= "Main"
+                root.manager.transition.direction= "right"
+
+
+        Label:
+            text: "Input nama yang ingin dihapus"
+            size_hint: 0.1,0.1
+            pos_hint:{"x":0.75,"y":0.5}
+            font_size:14
+            color:0.1, 0.5, 0.6, 1
+
+        TextInput:
+            multiline:False
+            id : hapusnama
+            size_hint: 0.25,0.05
+            pos_hint:{"x":0.675,"y":0.475}
+
+
+<CellLabel>:
+    size_hint: None, None
+    size: 90,40
+    color: 0,0,0,1
+    pos_hint: None,None
+    pos: (50,0.8)
+
+
+
+
+
+
+
+
